@@ -10,7 +10,7 @@ Usage:
     python plot_filter.py --config <config_path> [--speed <speed>] [--rank <rank>] [--lsp <lsp>]
 
 Args:
-    --config: Path to config module (e.g., exp1_SICER/config_RT60_0.1.py) [required]
+    --config: Path to config module (e.g., configs/config_RT60_0.1.py) [required]
     --speed: Sound speed to load filters for in m/s (default: 333)
     --rank: VAST rank to plot (default: 8000)
     --lsp: Loudspeaker index to plot (default: 7)
