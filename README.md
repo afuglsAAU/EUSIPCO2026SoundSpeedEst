@@ -1,9 +1,7 @@
 # Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control
 This is the official implementation of the EUSIPCO 2026 paper titled **Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control** on Sound Speed Estimation for Robust Sound Field Control.
 
----
-
-### Contents
+## Contents
 - Additional tracking- and Sound Zone Control (SZC)-performance figures not included in the paper: `outputs/plots/paper_figures/`
 
 
@@ -61,9 +59,6 @@ If you see heavy CPU usage, some scripts explicitly set `MKL_NUM_THREADS` / `OMP
   - `outputs/results/`: tracking results and speed-sweep performance results.
   - `outputs/plots/`: generated plots and paper figures.
 
-- `exp0_simulate_IRs/`: older/auxiliary scripts for RIR simulation and visualization.
-- `exp1_extra_exploration/`: notebooks/plots used for one-off exploration.
-
 - `.run_params/`: auto-generated per-experiment JSON parameter files written by `scripts/03_run_tracking_experiments.py`.
 
 ## Environment / paths
@@ -82,20 +77,8 @@ InputAudioPath=/absolute/path/to/SZC_Speed_Change_Extend/InputAudio/
 
 Notes:
 
-- `SimDataCovarPath` is where large covariance matrices are cached.
+- `SimDataCovarPath` is where large covariance matrices are cached. 
 - If you keep everything inside this repo, pointing `SimDataPath` to `./SimData` and `InputAudioPath` to `./InputAudio` works.
-
-## Installation
-
-This repository is developed and tested with **Python 3.11**.
-
-Create an environment (venv/conda) and install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-If you see heavy CPU usage, some scripts explicitly set `MKL_NUM_THREADS` / `OMP_NUM_THREADS`.
 
 ## Typical end-to-end workflow
 
@@ -108,31 +91,30 @@ The pipeline (at a high level):
 5. Index results
 6. Generate figures
 
-Example commands:
+Example commands to generate results in paper:
 
 ```bash
-# 0) (optional) sanity-check that your paths/config import
-python -c "from dotenv import dotenv_values; import pathlib; print(dotenv_values(pathlib.Path('.env')))"
-
-# 1) Compute GT VAST filters for all simulated speeds
+# 0) Compute GT VAST filters for all simulated speeds
 python scripts/00_compute_GT_VAST_filters.py --config configs/config_RT60_0.1.py --parallel --max-workers 8
 
-# 2) Create SICER-corrected IRs (base speed -> all target speeds)
-python scripts/01_run_SICER_interp.py --config configs/config_RT60_0.1.py --base-speed 343 --speeds config
+# 1) Create SICER-corrected IRs (base speed -> all target speeds)
+python scripts/01_run_SICER_interp.py --config configs/config_RT60_0.1.py --base-speed 333 --speeds config
 
-# 3) Compute SICER VAST filters using those corrected IRs
-python scripts/02_compute_SICER_VAST_filters.py --config configs/config_RT60_0.1.py --parallel --max-workers 2
+# 2) Compute SICER VAST filters using those corrected IRs
+python scripts/02_compute_SICER_VAST_filters.py --config configs/config_RT60_0.1.py --parallel --max-workers 2 --base-speeds 333
 
-# 4) Run the tracking experiment matrix (dry-run first; add --no-dry-run to execute)
-python scripts/03_run_tracking_experiments.py --group multi_lsp_one_mic --schedule speed_2_dt_2 --direction up
-python scripts/03_run_tracking_experiments.py --no-dry-run --max-parallel 4 --skip-existing
+# 3) Run the tracking experiment matrix (dry-run first; add --no-dry-run to execute)
+python scripts/03_run_tracking_experiments.py --schedule speed_2_dt_2 --direction up
+python scripts/03_run_tracking_experiments.py --schedule speed_2_dt_2 --direction up --no-dry-run --max-parallel 4 --skip-existing
 
-# 5) Build a CSV index of tracking runs
+# 4) Build a CSV index of tracking runs
 python scripts/04_index_results.py
 
-# 6) Generate paper-style figures into outputs/plots/paper_figures/
+# 5) Generate paper-style figures into outputs/plots/paper_figures/
 python scripts/05_generate_all_figures.py
 ```
+
+To generate results for other speed change patterns remove the `schedule` and `direction` flags.
 
 ## Scripts (in `scripts/`)
 
@@ -161,7 +143,7 @@ Outputs:
 
 ### `01_run_SICER_interp.py`
 
-Generates **SICER speed-corrected RIRs** by loading per-speed split `.mat` files and interpolating from a base speed to target speeds.
+Generates **SICER speed-corrected RIRs** by loading per-speed split `.mat` files and interpolating from a base speed to target speeds according to method of [1].
 
 Usage:
 
@@ -181,14 +163,14 @@ Outputs:
 
 ### `02_compute_SICER_VAST_filters.py`
 
-Computes VAST filters from **SICER-corrected** RIRs produced by `01_run_SICER_interp.py`. Only needed if trying to reproduce results from [1].
+Computes VAST filters from **SICER-corrected** RIRs produced by `01_run_SICER_interp.py` to get the SICER baseline performance with tracking script.
 
 Usage:
 
 ```bash
 python scripts/02_compute_SICER_VAST_filters.py \
   --config configs/config_RT60_0.1.py \
-  --base-speeds 343 \
+  --base-speeds 333 \
   --target-speeds config \
   --parallel --max-workers 2
 ```
@@ -210,7 +192,7 @@ Important behavior:
 - Can skip already-computed runs by scanning existing `meta.json` files (`--skip-existing`).
 - Supports filtering down the experiment matrix by group/schedule/direction/input/etc.
 
-Common usage:
+Filtered experiment usage:
 
 ```bash
 # Dry-run one slice
@@ -275,49 +257,9 @@ Output:
 
 - `outputs/plots/paper_figures/` (PDFs)
 
-### `process_speeds.py`
-
-Evaluates VAST performance (AC / nSDP) across **design speeds**, **eval speeds**, and **ranks**, using either GT or SICER filter sets. For reproducing results from [1].
-Its outputs are used by the `compare_VAST_SICER_*` plotting scripts.
-
-Usage:
-
-```bash
-python scripts/process_speeds.py \
-  --config configs/config_RT60_0.1.py \
-  --filters GT \
-  --design-speeds 343 \
-  --eval-speeds 333:353:1
-
-# SICER performance using base-speed design
-python scripts/process_speeds.py --config configs/config_RT60_0.1.py --filters SICER --design-speeds 343 --eval-speeds 333:353:1
-```
-
-### `compare_VAST_SICER_vs_ranks.py`
-
-Plots GT vs uncorrected vs SICER performance **over VAST ranks** for selected evaluation speeds. Reproducing results from [1].
-Reads `performance_avg.npz` files produced by `process_speeds.py`.
-
-Usage:
-
-```bash
-python scripts/compare_VAST_SICER_vs_ranks.py --config configs/config_RT60_0.1.py
-```
-
-### `compare_VAST_SICER_vs_speed_delta.py`
-
-Plots performance change (ΔAC, ΔnSDP) vs **speed difference** for selected ranks. To better illlustrate results of GT vs SICER as function of speed difference, results not giving in [1].
-Reads `performance_avg.npz` files produced by `process_speeds.py`.
-
-Usage:
-
-```bash
-python scripts/compare_VAST_SICER_vs_speed_delta.py --config configs/config_RT60_0.1.py
-```
-
 ### `compare_speed_tracks.py`
 
-Side-by-side comparison of two speed-tracking runs (plots AC/nSDP time series).
+Side-by-side comparison of two speed-tracking runs (plots AC/nSDP time series) for quick exploritory comparison.
 
 Usage:
 
@@ -331,7 +273,7 @@ python scripts/compare_speed_tracks.py \
 
 ### `plot_filter.py`
 
-Plots a single VAST filter (time + frequency response) for a chosen speed/rank/loudspeaker.
+Plots a single GT VAST filter (time + frequency response) for a chosen speed/rank/loudspeaker.
 
 Usage:
 
@@ -349,33 +291,26 @@ This script is not parameterized via CLI; edit variables at the top if needed an
 python scripts/plot_room.py
 ```
 
-### `plot_exploritory_results_from_index.py`
-
-Small exploratory plotting script that loads the results index and saves example plots.
-It currently contains hard-coded paths/choices; treat it as a starting point for quick analysis.
-
-### `test_wrong_speed_effect.py`
-
-Diagnostic script that measures how SICER-corrected IRs diverge as you “guess” the wrong speed.
-
-Usage:
-
-```bash
-python scripts/test_wrong_speed_effect.py --config configs/config_RT60_0.1.py --base-speed 343
-```
-
-Optional: estimate the start speed continuously:
-
-```bash
-python scripts/test_wrong_speed_effect.py --config configs/config_RT60_0.1.py --estimate-start-speed --annotate-estimate
-```
-
 ## Troubleshooting
 
 - **Imports fail / `src` not found**: ensure `.env` has `MainCodePath` pointing to the repo root.
 - **Missing data files**: check `.env` paths for `SimDataPath` and `InputAudioPath`.
 - **Results/plots not appearing under `outputs/`**: verify `.env` `MainOutputPath` points at `./outputs` (or your intended output folder).
 
-## References
+
+## Citation:
+If you find the paper useful in your research, please cite:  
+```
+@article{fuglsig2026Online,
+  title={Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control},
+  author={Andreas Jonas Fuglsig and Mads Gr{\ae}sb{\o}ll Christensen and Jesper Rindom Jensen},
+  journal={Preprint submitted to EUSIPCO 2026},
+  year={2026}
+}
+```
+
+## References & Acknowledgement
+
+We would like to thank the authors of [1] for sharing their original Matlab code for the SICER correction method.
 
 [1] S. S. Bhattacharjee, J. R. Jensen, and M. G. Christensen, “Sound Speed Perturbation Robust Audio: Impulse Response Correction and Sound Zone Control,” IEEE Transactions on Audio, Speech and Language Processing, vol. 33, pp. 2008–2020, 2025, doi: 10.1109/TASLPRO.2025.3570949.
