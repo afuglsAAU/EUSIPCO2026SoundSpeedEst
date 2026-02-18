@@ -76,7 +76,7 @@ InputAudioPath=/absolute/path/to/SZC_Speed_Change_Extend/InputAudio/
 ```
 
 Notes:
-- `MainCodePath` is set for scripts to automatically repo is on the `PYTHONPATH`.
+- `MainCodePath` is set for scripts to automatically ensure repo is on the `PYTHONPATH`.
 - `SimDataCovarPath` is where large covariance matrices are cached. 
 - If you keep everything inside this repo, pointing `SimDataPath` to `./SimData` and `InputAudioPath` to `./InputAudio` works.
 
