@@ -1,5 +1,5 @@
 # Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control
-This is the official implementation of the EUSIPCO 2026 paper titled **Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control** on Sound Speed Estimation for Robust Sound Field Control.
+This is the official implementation of the paper titled **Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control** submitted to EUSIPCO 2026.
 
 ## Contents
 - Additional tracking- and Sound Zone Control (SZC)-performance figures not included in the paper: `outputs/plots/paper_figures/`
@@ -301,11 +301,14 @@ python scripts/plot_room.py
 ## Citation:
 If you find the paper useful in your research, please cite:  
 ```
-@article{fuglsig2026Online,
-  title={Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control},
-  author={Andreas Jonas Fuglsig and Mads Gr{\ae}sb{\o}ll Christensen and Jesper Rindom Jensen},
-  journal={Preprint submitted to EUSIPCO 2026},
-  year={2026}
+@inproceedings{fuglsig_2026_online,
+title = "Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control",
+author = "Fuglsig, \{Andreas Jonas\} and Christensen, \{Mads Gr{\ae}sb{\o}ll\} and Jensen, \{Jesper Rindom\}",
+year = "2026",
+month = feb,
+language = "English",
+booktitle = "2026 34th European Signal Processing Conference (EUSIPCO)",
+note = "Submitted preprint"
 }
 ```
 
