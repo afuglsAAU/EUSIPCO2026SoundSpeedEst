@@ -1,0 +1,142 @@
+# ============================================================
+# Speed Tracking Experiment Definitions
+# ============================================================
+
+globals:
+  estimator: grid
+  search_min_speed: 326.0
+  search_max_speed: 360.0
+  vast_ranks: [1, 4041, 8000]   # 16*500
+  inputs: [white, speech, rock, speech_music]
+
+# ------------------------------------------------------------
+# SPEED CHANGE SCHEDULES (positive magnitude only)
+# To be combined with directions (up/down)
+# To be combined with experiment groups
+# ------------------------------------------------------------
+speed_schedules:
+
+  speed_1_dt_1:
+    speed_change: 1
+    speed_change_time: 1
+    input_duration: 20
+
+  speed_1_dt_2:
+    speed_change: 1
+    speed_change_time: 2
+    input_duration: 42
+
+  speed_2_dt_2:
+    speed_change: 2
+    speed_change_time: 2
+    input_duration: 22
+
+  speed_4_dt_2:
+    speed_change: 4
+    speed_change_time: 2
+    input_duration: 12
+
+  speed_4_dt_4:
+    speed_change: 4
+    speed_change_time: 4
+    input_duration: 24
+
+
+# ------------------------------------------------------------
+# SPEED DIRECTIONS
+# ------------------------------------------------------------
+directions:
+
+  up:
+    speed_change_start_speed: 333
+    estimator_base_speed: 333
+    speed_sign: +1
+
+  down:
+    speed_change_start_speed: 353
+    estimator_base_speed: 353
+    speed_sign: -1
+
+
+# ------------------------------------------------------------
+# ONE SPEAKER – ONE OBS MIC (LSP=7, BZ=0)
+# ------------------------------------------------------------
+one_lsp_one_mic:
+
+  base:
+    obs_mic_indices:
+      BZ: [0]
+    obs_lsp_indices: [7]
+    active_lsp_indices: [7]
+    compute_obs_only: true
+
+  experiments:
+
+    - name: no_filter
+      apply_filter: false
+      update_filter: false
+      modes: [full_grid, adaptive_window]
+
+    - name: szc_no_update
+      apply_filter: true
+      update_filter: false
+      modes: [full_grid, adaptive_window]
+
+
+# ------------------------------------------------------------
+# MULTIPLE SPEAKERS – ONE OBS MIC (BZ=0)
+# ------------------------------------------------------------
+multi_lsp_one_mic:
+
+  base:
+    obs_mic_indices:
+      BZ: [0]
+    compute_obs_only: false
+    active_lsp_indices: all
+
+  experiments:
+
+    - name: no_filter
+      apply_filter: false
+      update_filter: false
+      modes: [full_grid, adaptive_window]
+
+    - name: szc_update
+      apply_filter: true
+      update_filter: true
+      modes: [full_grid, adaptive_window]
+
+    - name: szc_no_update
+      apply_filter: true
+      update_filter: false
+      modes: [full_grid, adaptive_window]
+
+    - name: szc_gt_baseline
+      gt_baseline: true
+      apply_filter: true
+      update_filter: false
+      modes: [full_grid]
+
+    - name: szc_sicer_baseline
+      sicer_baseline: true
+      apply_filter: true
+      update_filter: false
+      modes: [full_grid]
+
+
+# ------------------------------------------------------------
+# ADAPTIVE WINDOW MODES
+# ------------------------------------------------------------
+adaptive_windows:
+
+  full_grid:
+    adaptive_window: false
+
+  adaptive_window:
+    adaptive_window: true
+    search_middle_lookback: 1
+    window_sets:
+      - { search_window_width: 6 }
+      - { search_window_width: 8 }
+      - { search_window_width: 10 }
+      - { search_window_width: 12 }
