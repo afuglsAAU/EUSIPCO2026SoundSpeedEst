@@ -1,5 +1,5 @@
 # Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control
-This is the official implementation of the paper titled **Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control** submitted to EUSIPCO 2026.
+This is the official implementation of the paper titled [Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control](https://vbn.aau.dk/en/publications/online-single-channel-audio-based-sound-speed-estimation-for-robu/) submitted to EUSIPCO 2026.
 
 ## Contents of repository
 - Additional tracking- and Sound Zone Control (SZC)-performance figures not included in the paper: `outputs/plots/paper_figures/`
