@@ -68,11 +68,11 @@ Most scripts load paths from `.env` via `python-dotenv`. These variables are use
 Required (typical):
 
 ```dotenv
-MainCodePath=/absolute/path/to/SZC_Speed_Change_Extend/
-MainOutputPath=/absolute/path/to/SZC_Speed_Change_Extend/outputs/
-SimDataPath=/absolute/path/to/SZC_Speed_Change_Extend/SimData/
+MainCodePath=/absolute/path/to/EUSIPCO2026SoundSpeedEst/
+MainOutputPath=/absolute/path/to/EUSIPCO2026SoundSpeedEst/outputs/
+SimDataPath=/absolute/path/to/EUSIPCO2026SoundSpeedEst/SimData/
 SimDataCovarPath=/absolute/path/to/somewhere/to/cache/covariances/
-InputAudioPath=/absolute/path/to/SZC_Speed_Change_Extend/InputAudio/
+InputAudioPath=/absolute/path/to/EUSIPCO2026SoundSpeedEst/InputAudio/
 ```
 
 Notes:
