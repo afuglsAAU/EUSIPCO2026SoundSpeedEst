@@ -299,8 +299,10 @@ python scripts/plot_room.py
 
 
 ## Citation:
-If you find the paper useful in your research, please cite:  
-```
+If you find the paper useful in your research, for now please cite:  
+
+<!---
+Commented out add when accepted
 @inproceedings{fuglsig_2026_online,
 title = "Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control",
 author = "Fuglsig, \{Andreas Jonas\} and Christensen, \{Mads Gr{\ae}sb{\o}ll\} and Jensen, \{Jesper Rindom\}",
@@ -310,7 +312,19 @@ language = "English",
 booktitle = "2026 34th European Signal Processing Conference (EUSIPCO)",
 note = "Submitted preprint"
 }
+--->
+
 ```
+@article{fuglsig_2026_online,
+      title={Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control}, 
+      author={Andreas Jonas Fuglsig and Mads Græsbøll Christensen and Jesper Rindom Jensen},
+      year={2026},
+      journal={arXiv preprint arXiv:2602.16416},
+      url={https://arxiv.org/abs/2602.16416}, 
+}
+```
+
+Citation will be updated after review and publication.
 
 ## References & Acknowledgement
 
