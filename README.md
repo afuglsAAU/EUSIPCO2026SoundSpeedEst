@@ -1,7 +1,7 @@
 # Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control
-This is the official implementation of the EUSIPCO 2026 paper titled **Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control** on Sound Speed Estimation for Robust Sound Field Control.
+This is the official implementation of the paper titled [Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control](https://vbn.aau.dk/en/publications/online-single-channel-audio-based-sound-speed-estimation-for-robu/) submitted to EUSIPCO 2026.
 
-## Contents
+## Contents of repository
 - Additional tracking- and Sound Zone Control (SZC)-performance figures not included in the paper: `outputs/plots/paper_figures/`
 
 
@@ -68,15 +68,15 @@ Most scripts load paths from `.env` via `python-dotenv`. These variables are use
 Required (typical):
 
 ```dotenv
-MainCodePath=/absolute/path/to/SZC_Speed_Change_Extend/
-MainOutputPath=/absolute/path/to/SZC_Speed_Change_Extend/outputs/
-SimDataPath=/absolute/path/to/SZC_Speed_Change_Extend/SimData/
+MainCodePath=/absolute/path/to/EUSIPCO2026SoundSpeedEst/
+MainOutputPath=/absolute/path/to/EUSIPCO2026SoundSpeedEst/outputs/
+SimDataPath=/absolute/path/to/EUSIPCO2026SoundSpeedEst/SimData/
 SimDataCovarPath=/absolute/path/to/somewhere/to/cache/covariances/
-InputAudioPath=/absolute/path/to/SZC_Speed_Change_Extend/InputAudio/
+InputAudioPath=/absolute/path/to/EUSIPCO2026SoundSpeedEst/InputAudio/
 ```
 
 Notes:
-
+- `MainCodePath` is set for scripts to automatically ensure repo is on the `PYTHONPATH`.
 - `SimDataCovarPath` is where large covariance matrices are cached. 
 - If you keep everything inside this repo, pointing `SimDataPath` to `./SimData` and `InputAudioPath` to `./InputAudio` works.
 
@@ -299,15 +299,32 @@ python scripts/plot_room.py
 
 
 ## Citation:
-If you find the paper useful in your research, please cite:  
+If you find the paper useful in your research, for now please cite:  
+
+<!---
+Commented out add when accepted
+@inproceedings{fuglsig_2026_online,
+title = "Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control",
+author = "Fuglsig, \{Andreas Jonas\} and Christensen, \{Mads Gr{\ae}sb{\o}ll\} and Jensen, \{Jesper Rindom\}",
+year = "2026",
+month = feb,
+language = "English",
+booktitle = "2026 34th European Signal Processing Conference (EUSIPCO)",
+note = "Submitted preprint"
+}
+--->
+
 ```
-@article{fuglsig2026Online,
-  title={Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control},
-  author={Andreas Jonas Fuglsig and Mads Gr{\ae}sb{\o}ll Christensen and Jesper Rindom Jensen},
-  journal={Preprint submitted to EUSIPCO 2026},
-  year={2026}
+@article{fuglsig_2026_online,
+      title={Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control}, 
+      author={Andreas Jonas Fuglsig and Mads Græsbøll Christensen and Jesper Rindom Jensen},
+      year={2026},
+      journal={arXiv preprint arXiv:2602.16416},
+      url={https://arxiv.org/abs/2602.16416}, 
 }
 ```
+
+Citation will be updated after review and publication.
 
 ## References & Acknowledgement
 
