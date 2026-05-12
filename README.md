@@ -2,7 +2,7 @@
 This is the official implementation of the paper titled [Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control]([https://vbn.aau.dk/en/publications/online-s[...]](https://vbn.aau.dk/en/publications/online-single-channel-audio-based-sound-speed-estimation-for-robu/)
 
 ## Contents
-- [Contents of repository](#contents-of-repository)
+- [Repository Overview](#repository-overview)
 - [Requirement & Installation](#requirement--installation)
 - [Repository layout](#repository-layout)
 - [Environment / paths](#environment--paths)
@@ -12,7 +12,7 @@ This is the official implementation of the paper titled [Online Single-Channel A
 - [Citation](#citation)
 - [References & Acknowledgement](#references--acknowledgement)
 
-## Contents of repository
+## Repository overview
 - Additional tracking- and Sound Zone Control (SZC)-performance figures not included in the paper: `outputs/plots/paper_figures/`
 
 
