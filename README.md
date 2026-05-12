@@ -1,5 +1,16 @@
 # Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control
-This is the official implementation of the paper titled [Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control](https://vbn.aau.dk/en/publications/online-single-channel-audio-based-sound-speed-estimation-for-robu/) which has been accepted for publication at EUSIPCO 2026.
+This is the official implementation of the paper titled [Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control](https://vbn.aau.dk/en/publications/online-s[...]
+
+## Contents
+- [Contents of repository](#contents-of-repository)
+- [Requirement & Installation](#requirement--installation)
+- [Repository layout](#repository-layout)
+- [Environment / paths](#environment--paths)
+- [Typical end-to-end workflow](#typical-end-to-end-workflow)
+- [Scripts (in `scripts/`)](#scripts-in-scripts)
+- [Troubleshooting](#troubleshooting)
+- [Citation](#citation)
+- [References & Acknowledgement](#references--acknowledgement)
 
 ## Contents of repository
 - Additional tracking- and Sound Zone Control (SZC)-performance figures not included in the paper: `outputs/plots/paper_figures/`
@@ -319,4 +330,4 @@ Citation will be updated after review and publication.
 
 We would like to thank the authors of [1] for sharing their original Matlab code for the SICER correction method.
 
-[1] S. S. Bhattacharjee, J. R. Jensen, and M. G. Christensen, “Sound Speed Perturbation Robust Audio: Impulse Response Correction and Sound Zone Control,” IEEE Transactions on Audio, Speech and Language Processing, vol. 33, pp. 2008–2020, 2025, doi: 10.1109/TASLPRO.2025.3570949.
+[1] S. S. Bhattacharjee, J. R. Jensen, and M. G. Christensen, “Sound Speed Perturbation Robust Audio: Impulse Response Correction and Sound Zone Control,” IEEE Transactions on Audio, Speech a[...]
