@@ -1,5 +1,5 @@
 # Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control
-This is the official implementation of the paper titled [Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control](https://vbn.aau.dk/en/publications/online-single-channel-audio-based-sound-speed-estimation-for-robu/) submitted to EUSIPCO 2026.
+This is the official implementation of the paper titled [Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control](https://vbn.aau.dk/en/publications/online-single-channel-audio-based-sound-speed-estimation-for-robu/) which has been accepted for publication at EUSIPCO 2026.
 
 ## Contents of repository
 - Additional tracking- and Sound Zone Control (SZC)-performance figures not included in the paper: `outputs/plots/paper_figures/`
@@ -301,26 +301,15 @@ python scripts/plot_room.py
 ## Citation:
 If you find the paper useful in your research, for now please cite:  
 
-<!---
-Commented out add when accepted
+
+```
 @inproceedings{fuglsig_2026_online,
 title = "Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control",
 author = "Fuglsig, \{Andreas Jonas\} and Christensen, \{Mads Gr{\ae}sb{\o}ll\} and Jensen, \{Jesper Rindom\}",
 year = "2026",
-month = feb,
+month = Aug,
 language = "English",
 booktitle = "2026 34th European Signal Processing Conference (EUSIPCO)",
-note = "Submitted preprint"
-}
---->
-
-```
-@article{fuglsig_2026_online,
-      title={Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control}, 
-      author={Andreas Jonas Fuglsig and Mads Græsbøll Christensen and Jesper Rindom Jensen},
-      year={2026},
-      journal={arXiv preprint arXiv:2602.16416},
-      url={https://arxiv.org/abs/2602.16416}, 
 }
 ```
 
