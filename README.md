@@ -304,13 +304,13 @@ python scripts/plot_room.py
 
 ## Troubleshooting
 
-- **Imports fail / `src` not found**: ensure `.env` has `MainCodePath` pointing to the repo root.
+- **Imports fail or `src` not found**: ensure `.env` has `MainCodePath` pointing to the repo root.
 - **Missing data files**: check `.env` paths for `SimDataPath` and `InputAudioPath`.
-- **Results/plots not appearing under `outputs/`**: verify `.env` `MainOutputPath` points at `./outputs` (or your intended output folder).
+- **Results or plots not appearing under `outputs/`**: verify `.env` `MainOutputPath` points at `./outputs` (or your intended output folder).
 
 
 ## Citation:
-If you find the paper useful in your research, for now please cite:  
+If you find the paper useful in your research, please cite:  
 
 
 ```
