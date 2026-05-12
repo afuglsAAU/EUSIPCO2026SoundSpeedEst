@@ -1,8 +1,18 @@
 # Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control
-This is the official implementation of the paper titled [Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control]([https://vbn.aau.dk/en/publications/online-s[...]](https://vbn.aau.dk/en/publications/online-single-channel-audio-based-sound-speed-estimation-for-robu/)
+This is the official implementation of the paper titled [Online Single-Channel Audio-Based Sound Speed Estimation for Robust Multi-Channel Audio Control](https://vbn.aau.dk/en/publications/online-single-channel-audio-based-sound-speed-estimation-for-robu/) published at EUSIPCO 2026.
+
+The repository contains:
+- Additional tracking- and Sound Zone Control (SZC)-performance figures not included in the paper: `outputs/plots/paper_figures/`
+
+- Python codebase for our experiments around **sound-speed estimation** in SZC including:
+  - Generating / loading multi-speed room impulse responses (RIRs)
+  - Computing VAST control filters (Ground Truth and SICER-corrected)
+  - Running sound-speed tracking experiments (grid / adaptive-window)
+  - Indexing results and generating paper-style figures
+
+**Important:** Most scripts assume you run them **from the repository root**.
 
 ## Contents
-- [Repository Overview](#repository-overview)
 - [Requirement & Installation](#requirement--installation)
 - [Repository layout](#repository-layout)
 - [Environment / paths](#environment--paths)
@@ -12,17 +22,7 @@ This is the official implementation of the paper titled [Online Single-Channel A
 - [Citation](#citation)
 - [References & Acknowledgement](#references--acknowledgement)
 
-## Repository overview
-- Additional tracking- and Sound Zone Control (SZC)-performance figures not included in the paper: `outputs/plots/paper_figures/`
 
-
-- Python codebase for our experiments around **sound-speed estimation** in SZC including:
-  - Generating / loading multi-speed room impulse responses (RIRs)
-  - Computing VAST control filters (Ground Truth and SICER-corrected)
-  - Running sound-speed tracking experiments (grid / adaptive-window)
-  - Indexing results and generating paper-style figures
-
-Most scripts assume you run them **from the repository root**.
 
 ---
 
@@ -303,10 +303,11 @@ python scripts/plot_room.py
 ```
 
 ## Troubleshooting
-
+- Make sure you are running scripts from the repository root. 
 - **Imports fail or `src` not found**: ensure `.env` has `MainCodePath` pointing to the repo root.
 - **Missing data files**: check `.env` paths for `SimDataPath` and `InputAudioPath`.
 - **Results or plots not appearing under `outputs/`**: verify `.env` `MainOutputPath` points at `./outputs` (or your intended output folder).
+  
 
 
 ## Citation:
