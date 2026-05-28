@@ -325,7 +325,7 @@ booktitle = "2026 34th European Signal Processing Conference (EUSIPCO)",
 }
 ```
 
-Citation will be updated after review and publication.
+Citation will be updated with doi after publication in IEEE Xplore.
 
 ## References & Acknowledgement
 
